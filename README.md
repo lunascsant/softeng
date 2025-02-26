@@ -1,30 +1,30 @@
 # MoradiApp API - Descrição
 
-Estrutura MVC Completa:
+### Estrutura MVC Completa:
 
-Models: Implementação de todas as classes do diagrama (Usuario, GrupoRepublica, Tarefa, Despesa, Relatorio, Notificacao, RegraCasa)
-Controllers: Lógica de negócios para cada modelo
-Routes: APIs RESTful para acessar as funcionalidades
-
-
-Características Implementadas:
-
-Autenticação com JWT
-Conexão com MongoDB
-Validação de dados e tratamento de erros
-Notificações para ações importantes
-Relatórios financeiros
-Sistema de gerenciamento de regras da casa
+- Models: Implementação de todas as classes do diagrama (Usuario, GrupoRepublica, Tarefa, Despesa, Relatorio, Notificacao, RegraCasa)
+- Controllers: Lógica de negócios para cada modelo
+- Routes: APIs RESTful para acessar as funcionalidades
 
 
-Configuração para Implantação:
+### Características Implementadas:
 
-Dockerfile para containerização
+- Autenticação com JWT
+- Conexão com MongoDB
+- Validação de dados e tratamento de erros
+- Notificações para ações importantes
+- Relatórios financeiros
+- Sistema de gerenciamento de regras da casa
+
+
+### Configuração para Implantação:
+
+- Dockerfile para containerização
 docker-compose.yml para orquestração de serviços
 
-Endpoints para Teste:
+### Endpoints para Teste:
 
-Exemplos documentados de chamadas para todos os recursos principais da API
+Exemplos documentados abaixo de chamadas para todos os recursos principais da API
 
 ## Para executar o projeto com o Docker
 
@@ -34,9 +34,9 @@ Isso iniciará tanto o servidor MongoDB quanto o backend Flask. A API estará di
 
 ## Para testes de desenvolvimento sem Docker, você precisará:
 
-Ter o MongoDB instalado e rodando na sua máquina
-Instalar as dependências com pip install -r requirements.txt
-Executar o servidor com python main.py
+- Ter o MongoDB instalado e rodando na sua máquina
+- Instalar as dependências com pip install -r requirements.txt
+- Executar o servidor com python main.py
 
 # MoradiApp API - Endpoints para teste
 
@@ -239,31 +239,32 @@ Authorization: Bearer <token-jwt>
 
 # Testes Unitários
 
+### Para rodá-los
 python3 -m unittest tests/test_unit.py
 
 1. TestModelUsuario
 Testa a funcionalidade do modelo Usuario:
 
-test_criacao_usuario: Verifica se um usuário é criado corretamente, se os dados são armazenados adequadamente, se a senha é hasheada (não armazenada em texto plano) e se o método save() funciona como esperado.
-test_verificacao_senha: Testa o método de verificação de senha, confirmando que ele retorna True para senhas corretas e False para senhas incorretas.
-test_busca_usuario_por_email: Verifica se o método estático find_by_email() funciona corretamente, buscando um usuário pelo endereço de email.
+- test_criacao_usuario: Verifica se um usuário é criado corretamente, se os dados são armazenados adequadamente, se a senha é hasheada (não armazenada em texto plano) e se o método save() funciona como esperado.
+- test_verificacao_senha: Testa o método de verificação de senha, confirmando que ele retorna True para senhas corretas e False para senhas incorretas.
+- test_busca_usuario_por_email: Verifica se o método estático find_by_email() funciona corretamente, buscando um usuário pelo endereço de email.
 
 2. TestModelTarefa
 Testa a funcionalidade do modelo Tarefa:
 
-test_criacao_tarefa: Verifica se uma tarefa é criada corretamente com todos os atributos esperados, e se o método save() funciona como esperado.
-test_atualizacao_tarefa: Testa se o método de atualização de tarefas funciona corretamente, verificando se os campos são atualizados e se a data de conclusão é definida quando o status é alterado para "concluída".
-test_listar_tarefas_proximas: Verifica se o método para listar tarefas com prazos próximos funciona corretamente, filtrando por grupo e retornando tarefas ordenadas por prazo.
+- test_criacao_tarefa: Verifica se uma tarefa é criada corretamente com todos os atributos esperados, e se o método save() funciona como esperado.
+- test_atualizacao_tarefa: Testa se o método de atualização de tarefas funciona corretamente, verificando se os campos são atualizados e se a data de conclusão é definida quando o status é alterado para "concluída".
+- test_listar_tarefas_proximas: Verifica se o método para listar tarefas com prazos próximos funciona corretamente, filtrando por grupo e retornando tarefas ordenadas por prazo.
 
 3. TestModelDespesa
 Testa a funcionalidade do modelo Despesa:
 
-test_criacao_despesa: Verifica se uma despesa é criada corretamente com todos os atributos esperados, e se o método save() funciona como esperado.
-test_calcular_valor_por_participante: Testa se o cálculo do valor por participante (dividindo o valor total pelo número de participantes) funciona corretamente.
-test_obter_total_por_categoria: Verifica se o método para obter o total de despesas por categoria funciona corretamente, usando agregação do MongoDB.
+- test_criacao_despesa: Verifica se uma despesa é criada corretamente com todos os atributos esperados, e se o método save() funciona como esperado.
+- test_calcular_valor_por_participante: Testa se o cálculo do valor por participante (dividindo o valor total pelo número de participantes) funciona corretamente.
+- test_obter_total_por_categoria: Verifica se o método para obter o total de despesas por categoria funciona corretamente, usando agregação do MongoDB.
 
-Características gerais dos testes:
+### Características gerais dos testes:
 
-Mocks: Todos os testes usam patch do unittest.mock para substituir o acesso ao MongoDB por objetos simulados, evitando a necessidade de um banco de dados real para testes.
-setUp: Cada classe de teste tem um método setUp que é executado antes de cada teste, preparando os dados necessários.
-Assert methods: São usados diversos métodos de verificação como assertEqual, assertTrue, assertFalse e assertAlmostEqual para validar os resultados esperados.
+- Mocks: Todos os testes usam patch do unittest.mock para substituir o acesso ao MongoDB por objetos simulados, evitando a necessidade de um banco de dados real para testes.
+- setUp: Cada classe de teste tem um método setUp que é executado antes de cada teste, preparando os dados necessários.
+- Assert methods: São usados diversos métodos de verificação como assertEqual, assertTrue, assertFalse e assertAlmostEqual para validar os resultados esperados.
